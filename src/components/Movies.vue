@@ -21,7 +21,8 @@
     name: 'MoviesUI',
     props: {
       data: Object,
-    }
+    },
+    emits: ['handleLike', 'openModal'], // 발생시키는 이벤트를 선언합니다.
   }
 </script>
 

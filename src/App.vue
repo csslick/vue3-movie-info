@@ -1,5 +1,6 @@
 <template>
   <Navbar />
+  <Search />
   <section class="container">
     <h1>영화정보</h1>
     <Movies 
@@ -11,7 +12,10 @@
 
   <Modal 
     @closeModal="isModal=false"
-    :data="data" :isModal="isModal" :selectedMovie="selectedMovie"/>
+    :data="data" 
+    :isModal="isModal" 
+    :selectedMovie="selectedMovie"
+  />
 
 </template>
 
@@ -20,6 +24,7 @@ import movie from './assets/movie';
 import AppNavbar from './components/Navbar.vue';
 import Modal from './components/Modal.vue';
 import Movies from './components/Movies.vue';
+import Search from './components/Search.vue';
 
 export default {
   name: 'App',
@@ -39,6 +44,7 @@ export default {
     Navbar: AppNavbar,
     Modal: Modal,
     Movies: Movies,
+    Search: Search,
   }
 }
 </script>
