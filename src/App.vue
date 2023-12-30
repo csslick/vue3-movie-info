@@ -1,16 +1,24 @@
 <template>
   <Navbar />
   <Event />
-  <Search :data="data" />
+  <div :style="{textAlign: 'center'}">
+    <Search 
+      :data="data_temp" 
+      @searchMovie="searchMovie($event)"
+    />
+    <p >
+      <button @click="showAllMovie" class="btn-all">전체보기</button>
+    </p>
+  </div>
 
-  <section class="container">
+  <main class="container">
     <h1>영화정보</h1>
     <Movies 
-      :data="data" 
+      :data="data_temp" 
       @openModal="isModal=true; selectedMovie=$event"
       @handleLike="increaseLike($event)"
     />
-  </section>
+  </main>
 
   <transition name="fade">
     <Modal 
@@ -38,13 +46,26 @@ export default {
       selectedMovie: 0,
       isModal: false,
       data: movie,
+      data_temp: movie,
       searchMovieName: 'name', 
     }
   },
   methods: {
     increaseLike(i) {
       this.data[i].like += 1;
+    },
+    searchMovie(title) {
+      // 영화제목이 포함된 자료를 반환
+      this.data_temp = this.data.filter(movie => {
+        return movie.title.includes(title);
+      })
+      console.log('title: ', title)
+      console.log('검색된 데이터: ', this.data_temp)
+    },
+    showAllMovie() {
+      this.data_temp = [...this.data];
     }
+
   },
   components: {
     Navbar: AppNavbar,
@@ -124,6 +145,10 @@ figure img {
 }
 .fade-leave-to {
   opacity: 0;
+}
+
+.btn-all {
+
 }
  </style>
 
