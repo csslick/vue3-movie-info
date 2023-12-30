@@ -1,6 +1,8 @@
 <template>
   <Navbar />
-  <Search />
+  <Event />
+  <Search :data="data" />
+
   <section class="container">
     <h1>영화정보</h1>
     <Movies 
@@ -10,12 +12,14 @@
     />
   </section>
 
-  <Modal 
-    @closeModal="isModal=false"
-    :data="data" 
-    :isModal="isModal" 
-    :selectedMovie="selectedMovie"
-  />
+  <transition name="fade">
+    <Modal 
+      @closeModal="isModal=false"
+      :data="data" 
+      :isModal="isModal" 
+      :selectedMovie="selectedMovie"
+    />
+  </transition>
 
 </template>
 
@@ -25,6 +29,7 @@ import AppNavbar from './components/Navbar.vue';
 import Modal from './components/Modal.vue';
 import Movies from './components/Movies.vue';
 import Search from './components/Search.vue';
+import Event from './components/Event.vue';
 
 export default {
   name: 'App',
@@ -33,6 +38,7 @@ export default {
       selectedMovie: 0,
       isModal: false,
       data: movie,
+      searchMovieName: 'name', 
     }
   },
   methods: {
@@ -45,11 +51,16 @@ export default {
     Modal: Modal,
     Movies: Movies,
     Search: Search,
+    Event: Event,
   }
 }
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
 }
@@ -63,7 +74,7 @@ body {
   margin-bottom: 10px;
   padding: 20px;
   display: flex;
-  gap: 20px;
+  gap: 30px;
 }
 
 figure {
@@ -92,4 +103,27 @@ figure img {
   width: 80%;
   padding: 20px;
   border-radius: 10px;
-}</style>
+}
+
+/* 트랜지션 시작 상태 */
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+ </style>
+
