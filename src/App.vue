@@ -73,7 +73,10 @@ export default {
     Movies: Movies,
     Search: Search,
     Event: Event,
-  }
+  },
+  mounted() {
+    console.log('mounted')
+  },
 }
 </script>
 
