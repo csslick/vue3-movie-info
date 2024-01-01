@@ -54,6 +54,7 @@ export default {
         '그날, 대한민국의 운명이 바뀌었다, 서울의 봄'
       ],
       eventTextNum: 0,
+      intervalEvent: null, // 타이머 저장 변수
     }
   },
   methods: {
@@ -81,10 +82,17 @@ export default {
     Event: Event,
   },
   mounted() {
-    console.log('mounted');
-    setTimeout(() => {
-      this.eventTextNum += 1;
+    setInterval(() => {
+      if(this.eventTextNum == this.eventText.length - 1) {
+        this.eventTextNum = 0;
+      } else {
+        this.eventTextNum += 1;
+      }
     }, 3000)
+  },
+  unmounted() {
+    // 컴포넌트가 종료되기 전에 타이머 해제
+    clearInterval(this.intervalEvent);
   },
 }
 </script>

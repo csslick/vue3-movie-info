@@ -15,7 +15,7 @@ export default {
     }
   },
   props: {
-    text: Object,
+    text: String,
   }
 }
 </script>
