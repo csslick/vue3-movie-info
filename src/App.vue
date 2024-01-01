@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <Event />
+  <Event :text="eventText[eventTextNum]" />
   <div :style="{textAlign: 'center'}">
     <Search 
       :data="data_temp" 
@@ -47,7 +47,13 @@ export default {
       isModal: false,
       data: movie,
       data_temp: movie,
-      searchMovieName: 'name', 
+      searchMovieName: 'name',
+      eventText: [
+        'NETPLIX 강렬한 운명의 드라마, 경기크리처',
+        '디즈니 100주년 기념작, 위시',
+        '그날, 대한민국의 운명이 바뀌었다, 서울의 봄'
+      ],
+      eventTextNum: 0,
     }
   },
   methods: {
@@ -75,7 +81,10 @@ export default {
     Event: Event,
   },
   mounted() {
-    console.log('mounted')
+    console.log('mounted');
+    setTimeout(() => {
+      this.eventTextNum += 1;
+    }, 3000)
   },
 }
 </script>
