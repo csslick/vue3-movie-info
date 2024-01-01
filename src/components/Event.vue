@@ -1,6 +1,7 @@
 <template>
   <div class="event" :class="{ show: isEvent }">
-    <p>NETPLIX 강렬한 운명의 드라마, 경기크리처</p>
+    <!-- <p>NETPLIX 강렬한 운명의 드라마, 경기크리처</p> -->
+    <p>{{ text }}</p>
     <button @click="isEvent = false">X</button>
   </div>
 </template>
@@ -13,6 +14,9 @@ export default {
       isEvent: true,
     }
   },
+  props: {
+    text: Object,
+  }
 }
 </script>
 
